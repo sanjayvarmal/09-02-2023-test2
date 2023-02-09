@@ -1,0 +1,25 @@
+package com.company;
+
+import java.util.*;
+
+public class q7 {
+    public static void rec(int i,int []a,List<Integer> list,List<List<Integer>> ls){
+        if(!ls.contains(list))
+        ls.add(new ArrayList<>(list));
+        for(int j=i;j<a.length;j++){
+         list.add(a[j]);
+         rec(j+1,a,list,ls);
+         list.remove(list.size()-1);
+        }
+    }
+    public static void main(String []args){
+        Scanner scan=new Scanner(System.in);
+    int n=scan.nextInt(),a[]=new int[n];
+    for(int i=0;i<n;i++){
+        a[i]=scan.nextInt();
+    }
+    List<List<Integer>> list=new ArrayList<>();
+    rec(0,a,new ArrayList<>(),list);
+        System.out.println(list);
+    }
+}
