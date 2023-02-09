@@ -1,0 +1,54 @@
+package com.company;
+
+import java.util.*;
+
+public class q44 {
+    public static boolean check(int i,String []s1,String s2){
+        if(i==s1.length)
+            return true;
+        if(!s2.contains(s1[i]))
+                return false;
+        if(check(i+1,s1,s2))
+            return true;
+        return false;
+    }
+    public static void main(String []args){
+        Scanner scan=new Scanner(System.in);
+        System.out.println("Enter total no of inputs");
+        int Total=scan.nextInt(),strTot=0;
+        String s1[],s2="",print="";
+        for(int i=0;i<Total;i++){
+            System.out.println("Enter String arr size");
+            strTot=scan.nextInt();
+            s1=new String[strTot];
+            System.out.println("Enter all String elements");
+            for(int j=0;j<strTot;j++){
+                s1[j]=scan.next();
+            }
+            System.out.println("Enter the check String");
+            s2=scan.next();
+            if(!check(0,s1,s2))
+            {
+                System.out.println("WRONG PASSWORD");
+            }
+            else {
+                String check1 = "";
+                print = "";
+                for (int j = 0; j < s2.length(); j++) {
+                    check1 += s2.charAt(j);
+                    int in = 0;
+                    for (int k = 0; k < s1.length; k++) {
+                        if (check1.equals(s1[k])) {
+                            in = 1;
+                        }
+                    }
+                    if (in == 1) {
+                        print += check1 + " ";
+                        check1 = "";
+                    }
+                }
+                System.out.println(print);
+            }
+        }
+    }
+}
