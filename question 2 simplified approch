@@ -10,7 +10,7 @@ public class q22 {
         for(int i=0;i<n;i++){
             String sam=scan.nextLine();
             b[i]=sam;
-            a[i]=i<n/2?sam.split("")[0]+" -":sam;
+            a[i]=i<=n/2?sam.split("")[0]+" -":sam;
         }
         for(int i=1;i<n;i++){
             for(int j=i+1;j<n;j++){
