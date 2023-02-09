@@ -1,0 +1,46 @@
+package com.company;
+
+import java.util.*;
+
+public class q5 {
+    public static boolean chec(String s) {
+        for (int i = 0; i < s.length() / 2; i++) {
+            if (s.charAt(i) != s.charAt(s.length() - 1 - i))
+                return false;
+        }
+        return true;
+    }
+    public static void rec(int i,String org,String check,List<String> list,boolean b[]){
+        if(chec(check) && !list.contains(check)){
+            list.add(check);
+        }
+        for(int j=0;j<org.length();j++){
+            if(!b[j]){
+                b[j]=true;
+                rec(i+1,org,check+org.charAt(j),list,b);
+                b[j]=false;
+            }
+        }
+    }
+    public static void main(String []args){
+        Scanner scan=new Scanner(System.in);
+        String s=scan.next();
+        System.out.println("Enter no of inputs ");
+        int n=scan.nextInt();
+        for(int in=0;in<n;in++) {
+            System.out.println("Enter st and end index");
+            int i = scan.nextInt(), j = scan.nextInt(), ans = 0, count = 0;
+            List<String> list = new ArrayList<>();
+            rec(0, s.substring(i - 1, j), "", list, new boolean[s.length()]);
+            for (int k = 0; k < list.size(); k++) {
+                if (ans < list.get(k).length())
+                    ans = list.get(k).length();
+            }
+            for (int k = 0; k < list.size(); k++) {
+                if (ans == list.get(k).length())
+                    count++;
+            }
+            System.out.println("count = " + count);
+        }
+    }
+}
